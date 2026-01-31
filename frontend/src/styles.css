@@ -1,0 +1,38 @@
+:root{
+  --bg1: #0f0b1a;
+  --bg2: #1b0735;
+  --accent: #9b59ff;
+  --card: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,Arial}
+body,html,#root{height:100%}
+body{margin:0;background:radial-gradient(ellipse at bottom left,var(--bg2) 0%, var(--bg1) 60%);color:#eae6ff}
+
+.app{display:flex;flex-direction:column;align-items:center;padding:32px}
+.hero{max-width:900px;text-align:center;margin-bottom:20px}
+.hero h1{font-size:48px;margin:0;color:var(--accent);letter-spacing:1px}
+.tagline{opacity:0.9}
+.meme{opacity:0.85;margin-top:6px;font-style:italic;font-size:13px}
+
+.card{width:100%;max-width:820px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:20px;border:1px solid rgba(255,255,255,0.04);box-shadow: 8px 8px 0 rgba(0,0,0,0.4)}
+
+.upload{display:flex;gap:16px;flex-direction:column}
+.drop{display:block;border:2px dashed rgba(255,255,255,0.06);padding:24px;border-radius:8px;cursor:pointer;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent)}
+.drop input{display:none}
+.drop-inner strong{display:block;font-size:16px}
+.drop-inner small{opacity:0.7}
+
+.controls{display:flex;align-items:center;gap:12px}
+.btn{background:linear-gradient(90deg,var(--accent), #6e2bff);color:white;padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
+.btn:disabled{opacity:0.6}
+.error{color:#ff6b6b}
+
+.result{margin-top:16px;padding:14px;border-radius:8px;background:var(--card);border:1px solid rgba(255,255,255,0.03)}
+.result h3{margin:0;color:var(--accent)}
+.meta{opacity:0.8;font-size:13px}
+
+.foot{opacity:0.7;margin-top:18px;font-size:13px}
+
+/* add subtle starfield */
+body:before{content:"";position:fixed;inset:0;background-image:radial-gradient(#ffffff10 1px, transparent 1px);background-size: 60px 60px;opacity:0.05;pointer-events:none}
