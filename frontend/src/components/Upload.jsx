@@ -13,14 +13,23 @@ export default function Upload({onResult}){
     if(!consent) return setError('Please confirm you have consent to upload this photo')
     setError(null)
     setLoading(true)
-    const fd = new FormData()
-    fd.append('photo', file)
-    try{
-      const res = await axios.post('/api/analyze', fd, {headers: {'Content-Type':'multipart/form-data'}})
-      onResult(res.data)
-    }catch(err){
-      setError(err?.response?.data?.message || err.message)
-    }finally{setLoading(false)}
+
+    // Read file as data URL (base64) and send JSON to serverless function
+    const reader = new FileReader()
+    reader.onload = async function(){
+      try{
+        const dataUrl = reader.result
+        const res = await axios.post('/api/analyze', { image: dataUrl })
+        onResult(res.data)
+      }catch(err){
+        setError(err?.response?.data?.message || err.message)
+      }finally{setLoading(false)}
+    }
+    reader.onerror = function(){
+      setError('Failed to read file')
+      setLoading(false)
+    }
+    reader.readAsDataURL(file)
   }
 
   return (
